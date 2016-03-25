@@ -1,88 +1,92 @@
+<!--
+  - Author: Juan Carlo M. Mangaliag
+  - Section: CMSC 128 AB-2L
+  - Assign 003: Using Firebase
+  - Program Description: This is a simple notepad web application that allows adding and viewing tasks through the use of Firebase technology.
+  - Date: March 25, 2016
+  -->
+
 <!DOCTYPE html>
 <html>
   <head>
   	<title>Note Pad Alpha</title>
   	<meta charset="utf-8" />
+  	<!-- css sources -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   	<link rel="stylesheet" href="css/modified.css">
-
+  	<!-- javascript sources -->
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="js/Note_Pad_Alpha.js"></script>
   </head>
-
+  <!-- wallpaper's reference: http://image.shutterstock.com/z/stock-vector-back-to-school-pen-sketch-seamless-background-can-be-used-for-wallpaper-pattern-fills-textile-148935581.jpg -->
   <body style="background-image:url(images/stock-vector-back-to-school-pen-sketch-seamless-background-can-be-used-for-wallpaper-pattern-fills-textile-148935581.png);">
-	<nav>
+	<nav> <!--navbar -->
 	    <div class="nav-wrapper #4a148c purple darken-4">
-	      &emsp;<a href="#" class="brand-logo left">Note Pad Alpha</a>
+	      &emsp;<a href="#" class="brand-logo left">Note Pad Alpha</a>	<!-- main logo -->
 	      <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a href="#" id="rem" onclick="removeData()">Clear Data</a></li>
+	        <li><a href="#" id="rem" onclick="removeData()">Clear Data</a></li>	<!-- clear data button -->
 	      </ul>
-
 	    </div>
-
 	</nav>
 
-	<div class="row center-align">
-		<div class="col s6 offset-s3">
+	<div class="row center-align">	
+		<div class="col s6 offset-s3">	<!-- container for tabs: Add Task and View Tasks -->
 			<ul class="tabs #ff9800 orange">
-				<li class="tab col s6 "><a class="black-text" href="#tab1" style="font-weight:bold;">Add Task</a></li>
-				<li class="tab col s6"><a class="black-text" href="#tab2" style="font-weight:bold;">View Tasks</a></li>
+				<li class="tab col s6 "><a class="black-text tabsFont" href="#tab1">Add Task</a></li>
+				<li class="tab col s6"><a class="black-text tabsFont" href="#tab2">View Tasks</a></li>
 				<div class="indicator #4a148c purple darken-4" style="z-index:1" </div>
 			</ul>
 		</div>
-		<div id="tab1" class="col s12"> <br/>
-			<form id="form1" class="col s6 offset-s3">
+		<div id="tab1" class="col s12"> <br/>	<!-- container for tab1: Add Task -->
+			<form id="form1" class="col s6 offset-s3">	<!-- form for Add Task -->
 		      <div class="row">
 		      	<h2 class="category1"> Add Task </h2>
 		        <div class="input-field col s6">
 		        	<i class="material-icons prefix">label</i>
-		          <input id="title" type="text" class="validate">
-		          <label for="title">Note Title</label>
+		          <input id="title" type="text" class="validate">	<!-- Note Title Input Field -->
+		          <label for="title">Note Title</label>	
 		        </div>
 		        <div class="input-field col s12">
 		        	<i class="material-icons prefix">description</i>
-	            	<textarea id="description" name="desc" class="materialize-textarea" length="120"></textarea>
+	            	<textarea id="description" name="desc" class="materialize-textarea" length="120"></textarea>	<!-- Note Description Text Area -->
 	            	<label for="description">Note Description</label>
 	            </div>
 		      </div>
 
 		      <div class="input-field col s12">
-			    <select id="selectcategory">
+			    <select id="selectcategory">	<!-- Select Task Category Select Options -->
 			      <option value="" disabled>Select Task Category</option>
 			      <option value="To Do" selected class="blue-text">To Do</option>
 			      <option value="Doing" >Doing</option>
 			      <option value="Done">Done</option>
 			    </select>
 			    <label>Select Task Category</label>
-			  </div>
-			
-		      
+			  </div>		      
 		    </form> 
 		    <div class="col s6 offset-s3" style="background-color:rgba(225,225,225,0.6); "><br/>
-		    <button class="btn #4a148c purple darken-4" id="submit" type="submit" onclick="collectInfo()"> Submit 
-	            	<i class="material-icons right">send</i> 
-	            </button><br/><br/></div>
+		    <button class="btn #4a148c purple darken-4" id="submit" type="submit" onclick="collectInfo()"> Submit <!-- Submit Button -->
+	        <i class="material-icons right">send</i></button><br/><br/></div>
 		</div>
 
 		<br/><br/><br/>
-		<div id="tab2" class="col s12" style="background-color:rgba(225,225,225,0.4); border-radius: 5%;">
+		<div id="tab2" class="col s12" style="background-color:rgba(225,225,225,0.4); border-radius: 5%;">	<!-- container for tab2: View Tasks -->
 			<div class="col s4"> 
-				<h2 class="category1"> To Do </h2>
+				<h2 class="category1"> To Do </h2>	<!-- Collapsible for To Do -->
 				<ul id="todo" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>
 
 			<div class="col s4"> 
-				<h2 class="category1"> Doing </h2>
+				<h2 class="category1"> Doing </h2>	<!-- Collapsible for Doing -->
 				<ul id="doing" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>
 
 			<div class="col s4"> 
-				<h2 class="category1"> Done </h2>
+				<h2 class="category1"> Done </h2>	<!-- Collapsible for Done -->
 				<ul id="done" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>

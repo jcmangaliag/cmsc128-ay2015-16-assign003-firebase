@@ -1,3 +1,12 @@
+/**
+ * Author: Juan Carlo M. Mangaliag
+ * Section: CMSC 128 AB-2L
+ * Assign 003: Using Firebase
+ * Program Description: This is a simple notepad web application that allows adding and viewing tasks through the use of Firebase technology.
+ * Date: March 25, 2016
+ */
+
+ /* All of these are css styles used in the index.html. Mostly are modified from Materialize CSS. */
 #form1{
 	background-color:rgba(225,225,225,0.6); 
 }
@@ -21,4 +30,7 @@ input[type=text]:focus:not([readonly]) + label, textarea.materialize-textarea:fo
 }
 .tabs .indicator {
   height: 4px;
+}
+.tabsFont {
+	font-weight:bold;
 }

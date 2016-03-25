@@ -1,40 +1,47 @@
-var dataRef = new Firebase('https://j4jrj6rz70r.firebaseio-demo.com/');
+/**
+ * Author: Juan Carlo M. Mangaliag
+ * Section: CMSC 128 AB-2L
+ * Assign 003: Using Firebase
+ * Program Description: This is a simple notepad web application that allows adding and viewing tasks through the use of Firebase technology.
+ * Date: March 25, 2016
+ */
+
+var dataRef = new Firebase('https://j4jrj6rz70r.firebaseio-demo.com/');	// reference to firebase
 
 $(document).ready(function() {
-	$('select').material_select();
+	$('select').material_select();	// enables select option for materialize css
 
-	dataRef.on('child_added', function(snapshot) {
+	dataRef.on('child_added', function(snapshot) {	// getting user data from the firebase
     	var task = snapshot.val();
-    	appendTask(task.category, task.title, task.description);
+    	displayTask(task.category, task.title, task.description);	// displays the data to tasks list
   	});
 });
 
-function collectInfo(){
+function collectInfo(){	// collects the title, description, task category that the user entered in the form
 
 	var notetitle = $('#title').val();
 	var notedescription = $("textarea[name='desc']").val();
-	notedescription = notedescription.replace(new RegExp('\r?\n','g'), '<br />');
+	notedescription = notedescription.replace(new RegExp('\r?\n','g'), '<br />');	// replaces \n with <br/>
 	var selected = $('#selectcategory option:selected').text();
 
-	if (notetitle != "" && notedescription != ""){
+	if (notetitle != "" && notedescription != ""){	// if fields are not empty, data will be pushed to firebase
 		dataRef.push({category: selected, title: notetitle, description: notedescription});
 
-		clearTasks();
-		dataRef.on('child_added', function(snapshot) {
+		clearTasks();	// cleans the task list
+		dataRef.on('child_added', function(snapshot) {	// getting user data from the firebase 
         	var task = snapshot.val();
-        	appendTask(task.category, task.title, task.description);
+        	displayTask(task.category, task.title, task.description);	// displays the data to tasks list
       	});
 
-      	Materialize.toast('Successfully Added a Task', 3000, 'rounded');
-      	$('#form1').trigger("reset");
+      	Materialize.toast('Successfully Added a Task', 3000, 'rounded');	// toast that shows added successful
+      	$('#form1').trigger("reset");	// resets the add task form
 	} else {
-		alert("Incomplete Fields!");
+		alert("Please complete the input fields!");
 	}
 }
 
-function appendTask(category, title, description){
-
-	switch(category){
+function displayTask(category, title, description){	// updates the view tasks tab with user data from firebase
+	switch(category){	// determines in what category will the note title and description be put
 		case "To Do":
 			$('#todo').append('<li><div class="collapsible-header"><i class="material-icons">play_for_work</i>'+title+'</div><div class="collapsible-body"><p>'+description+'</p></div></li>');
 			break;
@@ -47,14 +54,14 @@ function appendTask(category, title, description){
 	}
 }
 
-function clearTasks(){
+function clearTasks(){	// clears the view tasks list
 	$('#todo').empty();
 	$('#doing').empty();
 	$('#done').empty();
 }
 
-function removeData(){
+function removeData(){	// clears the user data from the firebase
 	dataRef.remove();
-	Materialize.toast('Firebase Data has been cleared!', 3000, 'rounded');
+	Materialize.toast('Firebase Data has been cleared!', 3000, 'rounded');	// toast that shows firebase data has been cleared
 	clearTasks();
 }
