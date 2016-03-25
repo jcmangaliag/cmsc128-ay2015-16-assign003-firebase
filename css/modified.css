@@ -1,6 +1,5 @@
 #form1{
 	background-color:rgba(225,225,225,0.6); 
-	border-radius: 5%;
 }
 input[type=text]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #4a148c;

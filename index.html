@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
   <head>
   	<title>Note Pad Alpha</title>
+  	<meta charset="utf-8" />
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   	<link rel="stylesheet" href="css/modified.css">
@@ -9,14 +11,18 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="js/Note_Pad_Alpha.js"></script>
-
   </head>
 
   <body style="background-image:url(images/stock-vector-back-to-school-pen-sketch-seamless-background-can-be-used-for-wallpaper-pattern-fills-textile-148935581.png);">
 	<nav>
 	    <div class="nav-wrapper #4a148c purple darken-4">
 	      &emsp;<a href="#" class="brand-logo left">Note Pad Alpha</a>
+	      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	        <li><a href="#" id="rem" onclick="removeData()">Clear Data</a></li>
+	      </ul>
+
 	    </div>
+
 	</nav>
 
 	<div class="row center-align">
@@ -33,96 +39,54 @@
 		      	<h2 class="category1"> Add Task </h2>
 		        <div class="input-field col s6">
 		        	<i class="material-icons prefix">label</i>
-		          <input id="first_name" type="text" class="validate">
-		          <label for="first_name">Note Title</label>
+		          <input id="title" type="text" class="validate">
+		          <label for="title">Note Title</label>
 		        </div>
 		        <div class="input-field col s12">
 		        	<i class="material-icons prefix">description</i>
-	            	<textarea id="textarea1" class="materialize-textarea " length="120"></textarea>
-	            	<label for="textarea1">Note Description</label>
+	            	<textarea id="description" name="desc" class="materialize-textarea" length="120"></textarea>
+	            	<label for="description">Note Description</label>
 	            </div>
 		      </div>
 
 		      <div class="input-field col s12">
-			    <select id="select">
+			    <select id="selectcategory">
 			      <option value="" disabled>Select Task Category</option>
-			      <option value="1" selected class="blue-text">To Do</option>
-			      <option value="2" >Doing</option>
-			      <option value="3">Done</option>
+			      <option value="To Do" selected class="blue-text">To Do</option>
+			      <option value="Doing" >Doing</option>
+			      <option value="Done">Done</option>
 			    </select>
 			    <label>Select Task Category</label>
 			  </div>
 			
-		      <button class="btn #4a148c purple darken-4" id="submit" type="submit" onclick="Materialize.toast('Successfully Added a Task', 3000, 'rounded')"> Submit 
-	            	<i class="material-icons right">send</i>
-	            </button><br/><br/>
-		    </form>
+		      
+		    </form> 
+		    <div class="col s6 offset-s3" style="background-color:rgba(225,225,225,0.6); "><br/>
+		    <button class="btn #4a148c purple darken-4" id="submit" type="submit" onclick="collectInfo()"> Submit 
+	            	<i class="material-icons right">send</i> 
+	            </button><br/><br/></div>
 		</div>
-
-
 
 		<br/><br/><br/>
 		<div id="tab2" class="col s12" style="background-color:rgba(225,225,225,0.4); border-radius: 5%;">
 			<div class="col s4"> 
 				<h2 class="category1"> To Do </h2>
-				<ul class="collapsible popout" data-collapsible="expandable">
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">play_for_work</i>First</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">play_for_work</i>Second</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
+				<ul id="todo" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>
 
 			<div class="col s4"> 
 				<h2 class="category1"> Doing </h2>
-				<ul class="collapsible popout" data-collapsible="expandable">
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">trending_down</i>First</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">trending_down</i>Second</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">trending_down</i>Third</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
+				<ul id="doing" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>
 
 			<div class="col s4"> 
 				<h2 class="category1"> Done </h2>
-				<ul class="collapsible popout" data-collapsible="expandable">
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">done</i>First</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">done</i>Second</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">done</i>Third</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
-				    <li>
-				      <div class="collapsible-header"><i class="material-icons">done</i>Fourth</div>
-				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-				    </li>
+				<ul id="done" class="collapsible popout" data-collapsible="expandable">
 			  	</ul>
 			</div>
 		</div>
 	</div>
-
-	<script>
-	    $(document).ready(function() {
-	    	$('select').material_select();
-		});
-	</script>
   </body>
 </html>
