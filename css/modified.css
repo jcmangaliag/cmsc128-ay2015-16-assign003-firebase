@@ -1,0 +1,25 @@
+#form1{
+	background-color:rgba(225,225,225,0.6); 
+	border-radius: 5%;
+}
+input[type=text]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #4a148c;
+  box-shadow: 0 1px 0 0 #4a148c;
+}
+input[type=text]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #4a148c;
+}
+.input-field .prefix.active {
+  color: #4a148c;
+}
+.category1{
+	font-family:GillSans;
+	font-weight:bold;
+	color: #4a148c;
+}
+.dropdown-content li > a, .dropdown-content li > span {
+	color: #4a148c;
+}
+.tabs .indicator {
+  height: 4px;
+}

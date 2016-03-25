@@ -1,0 +1,128 @@
+<html>
+  <head>
+  	<title>Note Pad Alpha</title>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  	<link rel="stylesheet" href="css/modified.css">
+
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="js/Note_Pad_Alpha.js"></script>
+
+  </head>
+
+  <body style="background-image:url(images/stock-vector-back-to-school-pen-sketch-seamless-background-can-be-used-for-wallpaper-pattern-fills-textile-148935581.png);">
+	<nav>
+	    <div class="nav-wrapper #4a148c purple darken-4">
+	      &emsp;<a href="#" class="brand-logo left">Note Pad Alpha</a>
+	    </div>
+	</nav>
+
+	<div class="row center-align">
+		<div class="col s6 offset-s3">
+			<ul class="tabs #ff9800 orange">
+				<li class="tab col s6 "><a class="black-text" href="#tab1" style="font-weight:bold;">Add Task</a></li>
+				<li class="tab col s6"><a class="black-text" href="#tab2" style="font-weight:bold;">View Tasks</a></li>
+				<div class="indicator #4a148c purple darken-4" style="z-index:1" </div>
+			</ul>
+		</div>
+		<div id="tab1" class="col s12"> <br/>
+			<form id="form1" class="col s6 offset-s3">
+		      <div class="row">
+		      	<h2 class="category1"> Add Task </h2>
+		        <div class="input-field col s6">
+		        	<i class="material-icons prefix">label</i>
+		          <input id="first_name" type="text" class="validate">
+		          <label for="first_name">Note Title</label>
+		        </div>
+		        <div class="input-field col s12">
+		        	<i class="material-icons prefix">description</i>
+	            	<textarea id="textarea1" class="materialize-textarea " length="120"></textarea>
+	            	<label for="textarea1">Note Description</label>
+	            </div>
+		      </div>
+
+		      <div class="input-field col s12">
+			    <select id="select">
+			      <option value="" disabled>Select Task Category</option>
+			      <option value="1" selected class="blue-text">To Do</option>
+			      <option value="2" >Doing</option>
+			      <option value="3">Done</option>
+			    </select>
+			    <label>Select Task Category</label>
+			  </div>
+			
+		      <button class="btn #4a148c purple darken-4" id="submit" type="submit" onclick="Materialize.toast('Successfully Added a Task', 3000, 'rounded')"> Submit 
+	            	<i class="material-icons right">send</i>
+	            </button><br/><br/>
+		    </form>
+		</div>
+
+
+
+		<br/><br/><br/>
+		<div id="tab2" class="col s12" style="background-color:rgba(225,225,225,0.4); border-radius: 5%;">
+			<div class="col s4"> 
+				<h2 class="category1"> To Do </h2>
+				<ul class="collapsible popout" data-collapsible="expandable">
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">play_for_work</i>First</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">play_for_work</i>Second</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+			  	</ul>
+			</div>
+
+			<div class="col s4"> 
+				<h2 class="category1"> Doing </h2>
+				<ul class="collapsible popout" data-collapsible="expandable">
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">trending_down</i>First</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">trending_down</i>Second</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">trending_down</i>Third</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+			  	</ul>
+			</div>
+
+			<div class="col s4"> 
+				<h2 class="category1"> Done </h2>
+				<ul class="collapsible popout" data-collapsible="expandable">
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">done</i>First</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">done</i>Second</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">done</i>Third</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+				    <li>
+				      <div class="collapsible-header"><i class="material-icons">done</i>Fourth</div>
+				      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				    </li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	    $(document).ready(function() {
+	    	$('select').material_select();
+		});
+	</script>
+  </body>
+</html>
