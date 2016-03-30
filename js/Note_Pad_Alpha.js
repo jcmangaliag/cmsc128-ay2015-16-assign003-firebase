@@ -6,7 +6,7 @@
  * Date: March 25, 2016
  */
 
-var dataRef = new Firebase('https://j4jrj6rz70r.firebaseio-demo.com/');	// reference to firebase
+var dataRef = new Firebase('https://shining-fire-5288.firebaseio.com/');	// reference to firebase
 
 $(document).ready(function() {
 	$('select').material_select();	// enables select option for materialize css
